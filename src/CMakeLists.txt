@@ -86,7 +86,10 @@ target_compile_options(${PROJECT_NAME} PRIVATE
         >
         /std:c++20;
         /sdl;
-        /EHa
+        # 2025-07: passing /EHa (as is typical elsewhere in the project) causes
+        #          clang-cl to hang occasionally & unpredictably when compiling
+        #          date/ParseDateStrings.cpp
+        /EHsc;
         ${DEFAULT_CXX_DEBUG_INFORMATION_FORMAT};
         /Zm200;
         ${DEFAULT_CXX_EXCEPTION_HANDLING}
